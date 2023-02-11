@@ -2,6 +2,7 @@ package com.microservice.mailermicroservice.controllers;
 
 import com.microservice.mailermicroservice.dtos.EmailDTO;
 import com.microservice.mailermicroservice.models.Email;
+import com.microservice.mailermicroservice.models.StatusEmail;
 import com.microservice.mailermicroservice.services.EmailService;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
@@ -24,6 +25,9 @@ public class EmailController {
         Email email = new Email();
         BeanUtils.copyProperties(emailDTO, email);
         emailService.sendEmail(email);
+
+        if (email.getStatusEmail().equals(StatusEmail.ERROR))
+            return new ResponseEntity<>(email, HttpStatus.BAD_REQUEST);
 
         return new ResponseEntity<>(email, HttpStatus.CREATED);
     }
