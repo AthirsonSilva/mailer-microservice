@@ -28,7 +28,7 @@ public class EmailService {
             message.setFrom(email.getFromEmail());
             message.setTo(email.getToEmail());
             message.setSubject(email.getSubjectEmail());
-            message.setText(email.getBodyEmail());
+            message.setText(email.getBodyEmail() + "\n\nSent by: " + email.getFromEmail());
 
             emailSender.send(message);
 

@@ -9,14 +9,11 @@ import lombok.Data;
 public class EmailDTO {
     @NotBlank
     private String ownerRef;
-    @NotBlank
-    @Email
-    private String toEmail;
+
     @NotBlank
     @Email
     private String fromEmail;
-    @NotBlank
-    private String subjectEmail;
+
     @NotBlank
     private String bodyEmail;
 }
